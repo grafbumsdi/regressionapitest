@@ -26,7 +26,7 @@ const requestTimeout time.Duration = 300
 func main() {
 	// command line flags
 	serveraddressPtr := flag.String("serveraddress", "", "the server address under test (e.g.: 192.168.11.23)")
-	apiCallsPtr := flag.String("apicalls", "api/v1/wikifolios,api/v1/trades,api/v1/import/wikifolios", "comma separated list of api calls")
+	apiCallsPtr := flag.String("apicalls", "api/v1/wikifolios,api/v1/trades,api/v1/import/wikifolios", "comma separated list of api calls to test")
 	logFilePtr := flag.String("logfile", "regressionapitest.log", "specify log file or set to 'stdout' to write to standard output")
 	logLevelPtr := flag.String("loglevel", "Info", "set loglevel to 'Trace' to log API response")
 	flag.Parse()
@@ -44,13 +44,13 @@ func main() {
 		Info.Println("Checking API call: " + apiCall)
 		// THEN: the response should not be null
 		if(respbody == "null") {
-			Error.Fatalln("API call " + apiCall + " failed: the response was null")
+			Error.Println("API call " + apiCall + " failed: the response was null")
 		} else {
 			Info.Println("API call " + apiCall + " succeeded: response was not 'null'")
 		}
 		// THEN: the response is a valid json
 		if(!isJson(respbody)) {
-			Error.Fatalln("API call " + apiCall + " failed: the response was not a valid Json")
+			Error.Println("API call " + apiCall + " failed: the response was not a valid Json")
 		} else {
 			Info.Println("API call " + apiCall + " succeeded: response was a valid JSON")
 		}
