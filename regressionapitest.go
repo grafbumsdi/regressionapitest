@@ -60,7 +60,7 @@ func main() {
 func initLog(fileName string, loglevel string) {
 	// open log stream
 	var outputstream *os.File
-	if fileName == "stdout" {
+	if strings.ToLower(fileName) == "stdout" {
 		outputstream = os.Stdout
 	} else {
 		var err error
@@ -71,7 +71,7 @@ func initLog(fileName string, loglevel string) {
 		}
 	}
 	// initialize loggers
-	if loglevel == "Trace" {
+	if strings.ToLower(loglevel) == "trace" {
 		Trace = log.New(outputstream,
 			"TRACE:   ",
 			log.Ldate|log.Ltime|log.Lshortfile)
@@ -140,5 +140,5 @@ func getServerUrl(serverUrl string) string {
 		fmt.Println("Please enter the web address you want to test (e.g.: 192.168.11.23): ")
 		serverUrl, _ = reader.ReadString('\n')
 	}
-	return serverUrl
+	return strings.TrimSpace(serverUrl)
 }
