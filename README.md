@@ -8,3 +8,6 @@ regressionapitest.exe -serveraddress 192.168.11.25 -apicalls api/v1/wikifolios/A
 ```bash
 regressionapitest.exe -serveraddress 192.168.11.43 -loglevel Trace -logfile apitests_43.log
 ```
+```bash
+regressionapitest.exe -serveraddress 192.168.11.23/api/v1 -apicalls wikifolios,trades,import/wikifolios
+```
